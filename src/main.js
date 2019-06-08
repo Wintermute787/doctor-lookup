@@ -2,21 +2,24 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
-import {ProfessionSearch} from "./doctor-lookup";
+import {SymptomLookUp} from "./doctor-lookup";
 
 $(document).ready(function () {
-  $("#profession-submit").click(function () {
-    let selectedProfession = $('#profession').val();
-    $('#profession').val("");
+  $("#symptom-submit").click(function () {
+    let selectedSymptom = $('#symptom').val();
+    $('#symptom').val("");
     
-    let professionLookup = new ProfessionSearch();
-    let professionResults = professionLookup.getDoctorProfession(selectedProfession);
+    let symptomLookup = new SymptomLookUp();
+    let symptomResults = symptomLookup.getDoctorProfession(selectedSymptom);
     
-    professionResults.then(function (response) {
+    symptomResults.then(function (response) {
       let body = JSON.parse(response);
-      $(".professions-show").text(`Here are all of the results for ${selectedProfession}: ${body.data.name} -- ${body.data.description}`);
+
+        $(".symptom-results").text(`Here are all of the results for ${selectedSymptom}: ${body.profile}`);
+
+      
     }, function (error) {
-      $(".errors").text(`There was an error proceesing your request ${error.message}`);
+      $(".errors").text(`There was an error processing your request ${error.message}`);
     });
   });
 });

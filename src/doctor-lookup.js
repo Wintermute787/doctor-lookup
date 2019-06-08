@@ -1,9 +1,9 @@
-export class ProfessionSearch {
-  getDoctorProfession(selectedProfession) {
+export class SymptomLookUp {
+  getDoctorProfession(selectedSymptom) {
     return new Promise(function (resolve, reject) {
       let request = new XMLHttpRequest();
       let key = process.env.exports.apiKey;
-      let url = 'https://api.betterdoctor.com/2016-03-01/specialties?skip=0&limit=20&user_key=' + key;
+      let url = 'https://api.betterdoctor.com/2016-03-01/doctors?location=37.773%2C-122.413%2C100&user_location=37.773%2C-122.413&skip=0&limit=10&user_key=' + key;
       console.log(key);
       request.onload = function () {
         if(this.status === 200) {
